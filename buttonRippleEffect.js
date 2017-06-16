@@ -9,7 +9,7 @@
 
                 var el = this.getBoundingClientRect(),
                     btnWidth = this.clientWidth,
-                    headerHeight = (RippleEffect.offsetEl !== null && RippleEffect.offsetEl !== undefined) ? RippleEffect.offsetEl.clientHeight : 0,
+                    headerHeight = RippleEffect.offsetEl ? RippleEffect.offsetEl.clientHeight : 0,
                     btnOffsetTop = el.top + headerHeight,
                     btnOffsetLeft = el.left,
                     posMouseX = e.changedTouches[0].pageX,
