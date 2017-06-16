@@ -7,10 +7,9 @@
 
             currentBtn.addEventListener("touchstart", function(e) {
 
-
                 var el = this.getBoundingClientRect(),
                     btnWidth = this.clientWidth,
-                    headerHeight = RippleEffect.offsetEl !== (null || undefined) ? RippleEffect.offsetEl.clientHeight : 0,
+                    headerHeight = RippleEffect.offsetEl ? RippleEffect.offsetEl.clientHeight : 0,
                     btnOffsetTop = el.top + headerHeight,
                     btnOffsetLeft = el.left,
                     posMouseX = e.changedTouches[0].pageX,
@@ -48,7 +47,6 @@
 
     function attachRippleAttribute (area, rippleColor) {
 
-        area = area ? area : "";
         var attributeEl = document.querySelectorAll(area + " [data-animation='ripple']");
 
         if (attributeEl.length > 0) {
@@ -87,12 +85,13 @@
 
         init(data) {
             try {
-                this.defaultColor = data.defaultColor ? data.defaultColor : this.defaultColor;
-                if (data.offsetEl) {
+                this.defaultColor = (data && data.defaultColor) ? data.defaultColor : this.defaultColor;
+                if (data && data.offsetEl) {
                     this.setOffsetEl(data.offsetEl);
                 }
 
-                attachRippleAttribute( data.area, this.defaultColor);
+                var area = (data && data.area) ? data.area : "";
+                attachRippleAttribute( area, this.defaultColor);
 
             } catch (e) {
                 console.error(e.message);
