@@ -1,4 +1,4 @@
-;(function(window){
+const touchMyRipple = () => {
 
     function ripple (els, rippleColor) {
 
@@ -31,7 +31,7 @@
                 }
 
                 this.appendChild(rippleEffect);
-
+                
                 //start animation
                 setTimeout( function() {
                     rippleEffect.style.cssText = baseCSS + "transform:scale(1); opacity: 0;";
@@ -45,7 +45,7 @@
 
     }
 
-    function attachRippleAttribute (area, rippleColor) {
+    function attachRippleToAttribute (area, rippleColor) {
 
         var attributeEl = document.querySelectorAll(area + " [data-animation='ripple']");
 
@@ -59,7 +59,7 @@
         }
     }
 
-    function attachRippleSelectors (selectors, rippleColor) {
+    function attachRippleToSelectors (selectors, rippleColor) {
 
         if (selectors) {
 
@@ -78,20 +78,32 @@
         ripple(selectorsEl, rippleColor);
     }
 
-    var RippleEffect = {
+    RippleEffect = {
 
+        area: "",
         defaultColor: "rgba(255, 255, 255, 0.4)",
         offsetEl: null,
+        eventListener: "click",
 
         init(data) {
             try {
                 this.defaultColor = (data && data.defaultColor) ? data.defaultColor : this.defaultColor;
-                if (data && data.offsetEl) {
-                    this.setOffsetEl(data.offsetEl);
-                }
+                this.offsetEl = (data && data.offsetEl) ? this.setOffsetEl(data.offsetEl) : null;
+                this.area = (data && data.area) ? data.area : "";
 
-                var area = (data && data.area) ? data.area : "";
-                attachRippleAttribute( area, this.defaultColor);
+                attachRippleToAttribute( this.area, this.defaultColor);
+
+            } catch (e) {
+                console.error(e.message);
+                console.error(e);
+            }
+        },
+
+        attachToSelectors(data) {
+            try {
+
+                var rippleColor = data.color || this.defaultColor;
+                attachRippleToSelectors(data.selectors, rippleColor);
 
             } catch (e) {
                 console.error(e.message);
@@ -100,22 +112,12 @@
         },
 
         setOffsetEl(el) {
+
             this.offsetEl = document.querySelector(el);
-        },
-
-        attachToSelectors(data) {
-            try {
-
-                var rippleColor = data.color || this.defaultColor;
-                attachRippleSelectors(data.selectors, rippleColor);
-
-            } catch (e) {
-                console.error(e.message);
-                console.error(e);
-            }
         }
     };
+}
 
-    window.tmripple = RippleEffect;
+module.export.touchMyRipple = touchMyRipple();
 
-})(this);
+
