@@ -1,24 +1,24 @@
-
 module.exports = {
-    output: {
-        filename: "[name].bundle.js",
-        sourceMapFilename: "./map/[name].map"
+
+    entry: {
+        touchMyRipple: './touchMyRipple.js',
     },
-    devtool: "source-map",
+    output: {
+        filename: './dist/[name].bundle.js',
+        libraryTarget: 'window',
+    },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "babel-loader",
-                        query: {
-                            presets: ['es2015']
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015'],
+                    },
+                },
+            },
+        ],
+    },
 };
