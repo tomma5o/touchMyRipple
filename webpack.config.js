@@ -1,10 +1,10 @@
 module.exports = {
 
     entry: {
-        touchMyRipple: './touchMyRipple.js',
+        touchMyRipple: './index.js',
     },
     output: {
-        filename: './dist/[name].bundle.js',
+        filename: './dist/touchMyRipple.js',
         libraryTarget: 'window',
     },
     module: {

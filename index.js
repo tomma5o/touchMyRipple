@@ -1,21 +1,32 @@
 const touchMyRipple = () => {
-    function ripple(els, rippleColor) {
-        for (var i = 0; i < els.length; i += 1) {
+    function ripple(els, rippleColor, eventListener) {
+        for (let i = 0; i < els.length; i += 1) {
             var currentBtn = els[i];
 
-            currentBtn.addEventListener('touchstart', function (e) {
+            currentBtn.addEventListener(eventListener, function (e) {
+                let PageX;
+                let PageY;
+
+                if (eventListener.match(/touch/) && eventListener.match(/touch/)[0].length > 0) {
+                    PageX = e.changedTouches[0].pageX;
+                    PageY = e.changedTouches[0].pageY;
+                } else {
+                    PageX = e.pageX;
+                    PageY = e.pageY;
+                }
+
                 var el = this.getBoundingClientRect(),
                     btnWidth = this.clientWidth,
                     rippleOffset = tmripple.settings.offsetEl,
                     headerHeight = rippleOffset ? rippleOffset.clientHeight : 0,
                     btnOffsetTop = el.top + headerHeight,
                     btnOffsetLeft = el.left,
-                    posMouseX = e.changedTouches[0].pageX,
-                    posMouseY = e.changedTouches[0].pageY + headerHeight,
+                    posMouseX = PageX,
+                    posMouseY = PageY + headerHeight,
                     rippleX = posMouseX - btnOffsetLeft,
                     rippleY = posMouseY - btnOffsetTop;
 
-                var baseCSS = `position: absolute;
+                const baseCSS = `position: absolute;
                                width: ${btnWidth * 2}px;
                                height: ${btnWidth * 2}px;
                                border-radius: 50%;
@@ -28,7 +39,7 @@ const touchMyRipple = () => {
                                pointer-events: none;`;
 
                 // Prepare the dom
-                var rippleEffect = document.createElement('span');
+                const rippleEffect = document.createElement('span');
                 rippleEffect.style.cssText = baseCSS;
 
                 // Add some css for prevent errors
@@ -44,43 +55,41 @@ const touchMyRipple = () => {
                 // start animation
                 setTimeout(() => {
                     rippleEffect.style.cssText = `${baseCSS} transform: scale(1); opacity: 0;`;
-                }, 5);
+                }, 50);
 
                 setTimeout(() => {
                     rippleEffect.remove();
                 }, 700);
             });
         }
-
     }
-    function attachRippleToAttribute (area, rippleColor) {
-
-        var attributeEl = document.querySelectorAll(`${area} [data-animation='ripple']`);
+    function attachRippleToAttribute(area, rippleColor, eventListener) {
+        const attributeEl = document.querySelectorAll(`${area} [data-animation='ripple']`);
 
         if (attributeEl.length > 0) {
-            ripple(attributeEl, rippleColor);
+            ripple(attributeEl, rippleColor, eventListener);
         } else {
             throw new Error('Selector/s not found');
         }
     }
 
-    function attachRippleToSelectors(selectors, rippleColor) {
+    function attachRippleToSelectors(selectors, rippleColor, eventListener) {
+        let selectorsEl;
+
         if (selectors) {
-            var selectorsEl = document.querySelectorAll(selectors);
+            selectorsEl = document.querySelectorAll(selectors);
         } else {
             throw new Error('You have to enter at least 1 selector');
         }
 
-
         if (selectorsEl.length <= 0) {
-
             console.warn('No element found');
         }
 
-        ripple(selectorsEl, rippleColor);
+        ripple(selectorsEl, rippleColor, eventListener);
     }
 
-    var tmripple = {
+    const tmripple = {
 
         settings: {
             area: '',
@@ -96,8 +105,7 @@ const touchMyRipple = () => {
                 this.settings.offsetEl = (data && data.offsetEl) ? this.setOffsetEl(data.offsetEl) : null;
                 this.settings.eventListener = (data && data.eventListener) ? data.eventListener : 'click';
 
-
-                attachRippleToAttribute(this.settings.area, this.settings.color);
+                attachRippleToAttribute(this.settings.area, this.settings.color, this.settings.eventListener);
             } catch (e) {
                 console.error(e.message);
                 console.error(e);
@@ -106,9 +114,10 @@ const touchMyRipple = () => {
 
         attachToSelectors(data) {
             try {
-                var rippleColor = data.color || this.settings.color;
+                const rippleColor = data.color || this.settings.color;
+                this.settings.eventListener = (data && data.eventListener) ? data.eventListener : 'click';
 
-                attachRippleToSelectors(data.selectors, rippleColor);
+                attachRippleToSelectors(data.selectors, rippleColor, this.settings.eventListener);
             } catch (e) {
                 console.error(e.message);
                 console.error(e);

@@ -8,4 +8,11 @@ button {
     background: #000;
     color: #FFF;
     outline: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+*[data-animation="ripple"]::selection {
+	background: transparent;
+	pointer-events: none;
 }

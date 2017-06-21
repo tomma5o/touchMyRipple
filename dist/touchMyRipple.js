@@ -74,19 +74,30 @@
 
 
 var touchMyRipple = function touchMyRipple() {
-    function ripple(els, rippleColor) {
+    function ripple(els, rippleColor, eventListener) {
         for (var i = 0; i < els.length; i += 1) {
             var currentBtn = els[i];
 
-            currentBtn.addEventListener('touchstart', function (e) {
+            currentBtn.addEventListener(eventListener, function (e) {
+                var PageX = void 0;
+                var PageY = void 0;
+
+                if (eventListener.match(/touch/) && eventListener.match(/touch/)[0].length > 0) {
+                    PageX = e.changedTouches[0].pageX;
+                    PageY = e.changedTouches[0].pageY;
+                } else {
+                    PageX = e.pageX;
+                    PageY = e.pageY;
+                }
+
                 var el = this.getBoundingClientRect(),
                     btnWidth = this.clientWidth,
                     rippleOffset = tmripple.settings.offsetEl,
                     headerHeight = rippleOffset ? rippleOffset.clientHeight : 0,
                     btnOffsetTop = el.top + headerHeight,
                     btnOffsetLeft = el.left,
-                    posMouseX = e.changedTouches[0].pageX,
-                    posMouseY = e.changedTouches[0].pageY + headerHeight,
+                    posMouseX = PageX,
+                    posMouseY = PageY + headerHeight,
                     rippleX = posMouseX - btnOffsetLeft,
                     rippleY = posMouseY - btnOffsetTop;
 
@@ -109,7 +120,7 @@ var touchMyRipple = function touchMyRipple() {
                 // start animation
                 setTimeout(function () {
                     rippleEffect.style.cssText = baseCSS + ' transform: scale(1); opacity: 0;';
-                }, 5);
+                }, 50);
 
                 setTimeout(function () {
                     rippleEffect.remove();
@@ -117,30 +128,30 @@ var touchMyRipple = function touchMyRipple() {
             });
         }
     }
-    function attachRippleToAttribute(area, rippleColor) {
-
+    function attachRippleToAttribute(area, rippleColor, eventListener) {
         var attributeEl = document.querySelectorAll(area + ' [data-animation=\'ripple\']');
 
         if (attributeEl.length > 0) {
-            ripple(attributeEl, rippleColor);
+            ripple(attributeEl, rippleColor, eventListener);
         } else {
             throw new Error('Selector/s not found');
         }
     }
 
-    function attachRippleToSelectors(selectors, rippleColor) {
+    function attachRippleToSelectors(selectors, rippleColor, eventListener) {
+        var selectorsEl = void 0;
+
         if (selectors) {
-            var selectorsEl = document.querySelectorAll(selectors);
+            selectorsEl = document.querySelectorAll(selectors);
         } else {
             throw new Error('You have to enter at least 1 selector');
         }
 
         if (selectorsEl.length <= 0) {
-
             console.warn('No element found');
         }
 
-        ripple(selectorsEl, rippleColor);
+        ripple(selectorsEl, rippleColor, eventListener);
     }
 
     var tmripple = {
@@ -159,7 +170,7 @@ var touchMyRipple = function touchMyRipple() {
                 this.settings.offsetEl = data && data.offsetEl ? this.setOffsetEl(data.offsetEl) : null;
                 this.settings.eventListener = data && data.eventListener ? data.eventListener : 'click';
 
-                attachRippleToAttribute(this.settings.area, this.settings.color);
+                attachRippleToAttribute(this.settings.area, this.settings.color, this.settings.eventListener);
             } catch (e) {
                 console.error(e.message);
                 console.error(e);
@@ -168,8 +179,9 @@ var touchMyRipple = function touchMyRipple() {
         attachToSelectors: function attachToSelectors(data) {
             try {
                 var rippleColor = data.color || this.settings.color;
+                this.settings.eventListener = data && data.eventListener ? data.eventListener : 'click';
 
-                attachRippleToSelectors(data.selectors, rippleColor);
+                attachRippleToSelectors(data.selectors, rippleColor, this.settings.eventListener);
             } catch (e) {
                 console.error(e.message);
                 console.error(e);
