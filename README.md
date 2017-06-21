@@ -6,7 +6,7 @@ touchMyRipple ( tmripple for short ) is a simple library who integrate ripple ef
 
 ## Installation
 ```javascript
-    npm install touchMyRipple --save
+    npm install touchmyripple --save
 ```
 or
 ```html
@@ -62,7 +62,7 @@ This method activate the ripple effect at all the elemets match the class passed
 
 `index.js`
 ```javascript
-const tmripple = require('touchMyRipple');
+const tmripple = require('touchmyripple');
 
 tmripple.init({
     color: '#bada55', // default is 'rgba(255, 255, 255, 0.4)'
