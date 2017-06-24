@@ -1,4 +1,4 @@
-const touchMyRipple = () => {
+const touchMyRipple = (setting) => {
     function ripple(els, rippleColor, eventListener) {
         for (let i = 0; i < els.length; i += 1) {
             var currentBtn = els[i];
@@ -46,7 +46,6 @@ const touchMyRipple = () => {
                 this.style.overflow = 'hidden';
 
                 if (window.getComputedStyle(this).position !== 'absolute' || window.getComputedStyle(this).position !== 'fixed') {
-
                     this.style.position = 'relative';
                 }
 
@@ -90,7 +89,6 @@ const touchMyRipple = () => {
     }
 
     const tmripple = {
-
         settings: {
             area: '',
             color: 'rgba(255, 255, 255, 0.4)',
@@ -128,7 +126,14 @@ const touchMyRipple = () => {
             this.settings.offsetEl = document.querySelector(el);
         },
     };
+
+    if (setting) {
+        tmripple.attachRippleToAttribute = attachRippleToAttribute;
+        tmripple.attachRippleToSelectors = attachRippleToSelectors;
+        tmripple.ripple = ripple;
+    }
+
     return tmripple;
 };
 
-module.exports.tmripple = touchMyRipple();
+exports.tmripple = test ? touchMyRipple(true) : touchMyRipple();

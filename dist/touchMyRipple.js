@@ -73,7 +73,7 @@
 "use strict";
 
 
-var touchMyRipple = function touchMyRipple() {
+var touchMyRipple = function touchMyRipple(setting) {
     function ripple(els, rippleColor, eventListener) {
         for (var i = 0; i < els.length; i += 1) {
             var currentBtn = els[i];
@@ -155,7 +155,6 @@ var touchMyRipple = function touchMyRipple() {
     }
 
     var tmripple = {
-
         settings: {
             area: '',
             color: 'rgba(255, 255, 255, 0.4)',
@@ -191,10 +190,17 @@ var touchMyRipple = function touchMyRipple() {
             this.settings.offsetEl = document.querySelector(el);
         }
     };
+
+    if (setting) {
+        tmripple.attachRippleToAttribute = attachRippleToAttribute;
+        tmripple.attachRippleToSelectors = attachRippleToSelectors;
+        tmripple.ripple = ripple;
+    }
+
     return tmripple;
 };
 
-module.exports.tmripple = touchMyRipple();
+exports.tmripple =  false ? touchMyRipple(true) : touchMyRipple();
 
 /***/ })
 /******/ ])));

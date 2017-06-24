@@ -7,7 +7,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "clean": "rimraf dist/*",
     "build": "npm run clean && ./node_modules/.bin/webpack --config ./webpack.config.js",
     "watch": "npm run clean && ./node_modules/.bin/webpack --watch --config ./webpack.config.js"
@@ -39,6 +39,7 @@
     "eslint": "^4.0.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.3.0",
+    "jest": "^20.0.4",
     "rimraf": "^2.6.1"
   }
 }
