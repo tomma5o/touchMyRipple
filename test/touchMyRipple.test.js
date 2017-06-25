@@ -9,6 +9,18 @@ test('settings are the same ?', () => {
     });
 });
 
-// test('', () => {
+//console.log(tmripple.init());
 
-// });
+test('attachRippleToAttribute() generate error if no elements', () => {
+    function makeError() {
+        tmripple.attachRippleToAttribute();
+    }
+    expect(makeError).toThrowError('Selector/s not found');
+});
+
+test('ripple() generate error if no elements', () => {
+    function allok() {
+        tmripple.ripple(['<div class="ciccio"></div>'], 'red', 'click');
+    }
+    expect(allok).toThrowError('Selector/s not found');
+});
