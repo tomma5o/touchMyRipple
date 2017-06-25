@@ -6,7 +6,7 @@ touchMyRipple ( tmripple for short ) is a simple library who integrate ripple ef
 
 ## Installation
 ```javascript
-    npm install touchmyripple --save
+npm install touchmyripple --save
 ```
 or
 ```html
