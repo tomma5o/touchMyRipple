@@ -2,58 +2,63 @@
 
 <!--![image of touchMyRipple]()-->
 
-touchMyRipple ( tmripple for short ) is a simple library who integrate ripple effect in your fantastic site!
+touchMyRipple ( tmripple for short ) is a simple library that integrate ripple effect in your fantastic site!
 
 ## Installation
-```javascript
-npm install touchmyripple --save
-```
-or
+ 
+[**Download Build**](https://raw.githubusercontent.com/tomma5o/touchMyRipple/master/dist/touchMyRipple.js)
+
 ```html
 <script src="myDirectory/touchMyRipple.js"></script>
+```
+or
+```javascript
+npm install touchmyripple --save
 ```
 
 ## Methods
 
 ### **init(settings[Object])**
 
-This method activate the ripple effect at all the elemets have the attribute _data-animation="ripple"_
+This method enables ripple effect to all the elements that have the attribute _data-animation="ripple"_.<br>
+_All the following options are optional_
+
 
 `settings[Object]`
 ```javascript
 {
-    // area is an option for make data-animation more specific
-    area: 'class, id [string]',
+    // area is an option to make data-animation more specific
+    area: 'class, id',
 
     // color...🤔 
-    color: 'rgba, hex, hsla[string]', 
+    color: 'rgba, hex, hsla', 
 
-    // remove from the height calcs the element passed
-    offsetEl: 'class, id [string]',
+    // pass the scrolling element if it's not window
+    offsetEl: 'class, id',
 
     // this option accept an event listener 
-    eventListener: 'event[string]'
+    eventListener: 'event'
 }
 ```
 
 ### **attachToSelectors(settings[Object])**
 
-This method activate the ripple effect at all the elemets match the class passed in 'selectors'
+This method enables ripple effect to all the elements that match the class passed in 'selectors'
 
 `settings[Object]`
 ```javascript
     {
-        // selector of the element you want to attach the ripple
-        selectors: 'class, id [string]',
+        // selector of the element you want to attach the ripple ( is required )
+        selectors: 'class, id',
 
         // color...🤔🤔🤔🤔🤔🤔
-        color: 'rgba, hex, hsla[string]',
+        color: 'rgba, hex, hsla',
 
-        // remove from the height calcs the element passed
-        offsetEl: 'class, id [string]',
+        // pass the scrolling element if it's not window
+        offsetEl: 'class, id',
 
         // this option accept an event listener 
-        eventListener: 'event[string]'
+        eventListener: 'event'
     }
 ```
 

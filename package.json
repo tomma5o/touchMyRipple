@@ -8,9 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf dist/*",
-    "build": "npm run clean && ./node_modules/.bin/webpack --config ./webpack.config.js",
-    "watch": "npm run clean && ./node_modules/.bin/webpack --watch --config ./webpack.config.js"
+    "build": "node_modules/.bin/webpack --config webpack.config.js",
+    "watch": "node_modules/.bin/webpack --watch --config webpack.config.js"
   },
   "repository": {
     "type": "git",
