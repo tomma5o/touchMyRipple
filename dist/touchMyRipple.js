@@ -70,6 +70,9 @@
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 var touchMyRipple = function touchMyRipple() {
     function ripple(els, rippleColor, eventListener) {
         for (var i = 0; i < els.length; i += 1) {
@@ -191,7 +194,8 @@ var touchMyRipple = function touchMyRipple() {
     return tmripple;
 };
 
-module.exports.tmripple = touchMyRipple();
+exports.default = touchMyRipple();
+var tmripple = exports.tmripple = touchMyRipple();
 
 /***/ })
 /******/ ])));
