@@ -67,7 +67,7 @@ This method enables ripple effect to all the elements that match the class passe
 
 `index.js`
 ```javascript
-const tmripple = require('touchmyripple');
+import tmripple from 'touchmyripple';
 
 tmripple.init({
     color: '#bada55', // default is 'rgba(255, 255, 255, 0.4)'

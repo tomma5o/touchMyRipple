@@ -131,4 +131,4 @@ const touchMyRipple = () => {
     return tmripple;
 };
 
-module.exports.tmripple = touchMyRipple();
+export default touchMyRipple();
