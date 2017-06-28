@@ -11,8 +11,8 @@ const touchMyRipple = () => {
                     PageX = e.changedTouches[0].pageX;
                     PageY = e.changedTouches[0].pageY;
                 } else {
-                    PageX = e.pageX;
-                    PageY = e.pageY;
+                    PageX = e.x;
+                    PageY = e.y;
                 }
 
                 var el = this.getBoundingClientRect(),
@@ -33,6 +33,8 @@ const touchMyRipple = () => {
                                transition: transform 700ms, opacity 700ms;
                                transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
                                background: ${rippleColor};
+                               background-position: center;
+                               background-size: 100%;
                                top: ${rippleY - btnWidth}px;
                                left: ${rippleX - btnWidth}px;
                                transform: scale(0);

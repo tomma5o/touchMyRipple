@@ -5,7 +5,7 @@ button {
     margin: 50px auto;
     border: none;
     border-radius: 3px;
-    background: #000;
+    background: #F4A261 linear-gradient(from #F4A261 to #E76F51);
     color: #FFF;
     outline: none;
     cursor: pointer;
