@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/.bin/webpack --config webpack.config.js",
+    "build": "node_modules/.bin/webpack --config webpack.config.js && npm run copy",
+    "copy": "node _buildTask/copy.js",
     "watch": "node_modules/.bin/webpack --watch --config webpack.config.js"
   },
   "repository": {
@@ -36,6 +37,7 @@
     "eslint": "^4.0.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.3.0",
+    "fs-extra": "^3.0.1",
     "rimraf": "^2.6.1",
     "webpack": "^3.0.0"
   }

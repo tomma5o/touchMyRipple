@@ -5,7 +5,6 @@ module.exports = {
     },
     output: {
         filename: './dist/touchMyRipple.js',
-        filename: './docs/touchMyRipple.js',
         libraryTarget: 'window',
     },
     module: {
@@ -21,5 +20,5 @@ module.exports = {
                 },
             },
         ],
-    },
+    }
 };
