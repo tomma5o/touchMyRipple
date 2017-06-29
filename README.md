@@ -2,7 +2,8 @@
 
 <!--![image of touchMyRipple]()-->
 
-touchMyRipple ( tmripple for short ) is a simple library that integrate ripple effect in your fantastic site!
+touchMyRipple ( tmripple for short ) is a simple library that integrate ripple effect in your fantastic site!<br>
+[**Demo & Documentation**](https://tomma5o.github.io/touchMyRipple/#line3)
 
 ## Installation
  
