@@ -220,7 +220,8 @@ button {
 }
 
 button.addToCart {
-    background: #ced8ea;
+    background: linear-gradient(45deg,#b5e3ff,#b3e0fb);
+    color: #6a6a6a;
 }
 
 *[data-animation="ripple"]::selection {

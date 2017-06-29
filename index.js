@@ -34,6 +34,7 @@ const touchMyRipple = () => {
                                transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
                                background: ${rippleColor};
                                background-position: center;
+                               background-repeat: no-repeat;
                                background-size: 100%;
                                top: ${rippleY - btnWidth}px;
                                left: ${rippleX - btnWidth}px;

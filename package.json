@@ -1,6 +1,6 @@
 {
   "name": "touchmyripple",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Lightweight library for add ripple effect where you want",
   "main": "touchMyRipple.js",
   "directories": {
