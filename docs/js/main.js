@@ -10,7 +10,7 @@ $(document).ready(function() {
     tmripple.attachToSelectors({
         selectors: '.addToCart',
         color: 'url("images/cat.png")',
-        eventListener: 'mousedown'
+        eventListener: 'click'
     });
 
 });

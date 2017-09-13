@@ -74,6 +74,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var touchMyRipple = function touchMyRipple() {
+
+    var defaultSettings = {
+        area: '',
+        color: 'rgba(255, 255, 255, 0.4)',
+        offsetEl: null,
+        eventListener: 'click'
+    };
+
     function ripple(els, rippleColor, eventListener) {
         for (var i = 0; i < els.length; i += 1) {
             var currentBtn = els[i];
@@ -92,7 +100,7 @@ var touchMyRipple = function touchMyRipple() {
 
                 var el = this.getBoundingClientRect(),
                     btnWidth = this.clientWidth,
-                    rippleOffset = tmripple.settings.offsetEl,
+                    rippleOffset = defaultSettings.offsetEl,
                     headerHeight = rippleOffset ? rippleOffset.clientHeight : 0,
                     btnOffsetTop = el.top + headerHeight,
                     btnOffsetLeft = el.left,
@@ -155,22 +163,14 @@ var touchMyRipple = function touchMyRipple() {
     }
 
     var tmripple = {
-
-        settings: {
-            area: '',
-            color: 'rgba(255, 255, 255, 0.4)',
-            offsetEl: null,
-            eventListener: 'click'
-        },
-
         init: function init(data) {
             try {
-                this.settings.area = data && data.area ? data.area : '';
-                this.settings.color = data && data.color ? data.color : this.settings.color;
-                this.settings.offsetEl = data && data.offsetEl ? this.setOffsetEl(data.offsetEl) : null;
-                this.settings.eventListener = data && data.eventListener ? data.eventListener : 'click';
+                defaultSettings.area = data && data.area ? data.area : defaultSettings.area;
+                defaultSettings.color = data && data.color ? data.color : defaultSettings.color;
+                defaultSettings.offsetEl = data && data.offsetEl ? this.setOffsetEl(data.offsetEl) : defaultSettings.offsetEl;
+                defaultSettings.eventListener = data && data.eventListener ? data.eventListener : defaultSettings.eventListener;
 
-                attachRippleToAttribute(this.settings.area, this.settings.color, this.settings.eventListener);
+                attachRippleToAttribute(defaultSettings.area, defaultSettings.color, defaultSettings.eventListener);
             } catch (e) {
                 console.error(e.message);
                 console.error(e);
@@ -178,17 +178,17 @@ var touchMyRipple = function touchMyRipple() {
         },
         attachToSelectors: function attachToSelectors(data) {
             try {
-                var rippleColor = data.color || this.settings.color;
-                this.settings.eventListener = data && data.eventListener ? data.eventListener : 'click';
+                var rippleColor = data.color || defaultSettings.color;
+                var eventListener = data.eventListener || defaultSettings.eventListener;
 
-                attachRippleToSelectors(data.selectors, rippleColor, this.settings.eventListener);
+                attachRippleToSelectors(data.selectors, rippleColor, eventListener);
             } catch (e) {
                 console.error(e.message);
                 console.error(e);
             }
         },
         setOffsetEl: function setOffsetEl(el) {
-            this.settings.offsetEl = document.querySelector(el);
+            defaultSettings.offsetEl = document.querySelector(el);
         }
     };
     return tmripple;
