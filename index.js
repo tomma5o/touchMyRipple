@@ -1,11 +1,20 @@
 const touchMyRipple = () => {
 
+    let mouseMove = false;
     const defaultSettings = {
         area: '',
         color: 'rgba(255, 255, 255, 0.4)',
         offsetEl: null,
         eventListener: 'click',
     };
+
+    function onDrag(eventListener) {
+        if (eventListener === 'touchend') {
+            document.getElementsByTagName('body')[0].addEventListener('touchmove', () => {
+                mouseMove = true;
+            });
+        }
+    }
 
     function ripple(els, rippleColor, eventListener) {
         for (let i = 0; i < els.length; i += 1) {
@@ -61,6 +70,11 @@ const touchMyRipple = () => {
                     this.style.position = 'relative';
                 }
 
+                if (mouseMove) {
+                    mouseMove = false;
+                    return;
+                }
+
                 this.appendChild(rippleEffect);
 
                 // start animation
@@ -74,6 +88,7 @@ const touchMyRipple = () => {
             });
         }
     }
+
     function attachRippleToAttribute(area, rippleColor, eventListener) {
         const attributeEl = document.querySelectorAll(`${area} [data-animation='ripple']`);
 
@@ -109,6 +124,7 @@ const touchMyRipple = () => {
                 defaultSettings.offsetEl = (data && data.offsetEl) ? this.setOffsetEl(data.offsetEl) : defaultSettings.offsetEl;
                 defaultSettings.eventListener = (data && data.eventListener) ? data.eventListener : defaultSettings.eventListener;
 
+                onDrag(defaultSettings.eventListener);
                 attachRippleToAttribute(defaultSettings.area, defaultSettings.color, defaultSettings.eventListener);
             } catch (e) {
                 console.error(e.message);
