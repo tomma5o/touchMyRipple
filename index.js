@@ -95,7 +95,7 @@ const touchMyRipple = () => {
         if (attributeEl.length > 0) {
             ripple(attributeEl, rippleColor, eventListener);
         } else {
-            throw new Error('Selector/s not found');
+            throw new Error('not found any element with data-animation="ripple"');
         }
     }
 
@@ -109,7 +109,7 @@ const touchMyRipple = () => {
         }
 
         if (selectorsEl.length <= 0) {
-            console.warn('No element found');
+            console.warn('No element found with this selector: ', selectors);
         }
 
         ripple(selectorsEl, rippleColor, eventListener);
@@ -127,8 +127,7 @@ const touchMyRipple = () => {
                 onDrag(defaultSettings.eventListener);
                 attachRippleToAttribute(defaultSettings.area, defaultSettings.color, defaultSettings.eventListener);
             } catch (e) {
-                console.error(e.message);
-                console.error(e);
+                console.warn(e.message);
             }
         },
 
@@ -139,8 +138,7 @@ const touchMyRipple = () => {
 
                 attachRippleToSelectors(data.selectors, rippleColor, eventListener);
             } catch (e) {
-                console.error(e.message);
-                console.error(e);
+                console.warn(e.message);
             }
         },
 
