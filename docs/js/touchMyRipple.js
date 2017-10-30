@@ -157,7 +157,7 @@ var touchMyRipple = function touchMyRipple() {
         if (attributeEl.length > 0) {
             ripple(attributeEl, rippleColor, eventListener);
         } else {
-            throw new Error('Selector/s not found');
+            throw new Error('not found any element with data-animation="ripple"');
         }
     }
 
@@ -171,7 +171,7 @@ var touchMyRipple = function touchMyRipple() {
         }
 
         if (selectorsEl.length <= 0) {
-            console.warn('No element found');
+            console.warn('No element found with this selector: ', selectors);
         }
 
         ripple(selectorsEl, rippleColor, eventListener);
@@ -188,8 +188,7 @@ var touchMyRipple = function touchMyRipple() {
                 onDrag(defaultSettings.eventListener);
                 attachRippleToAttribute(defaultSettings.area, defaultSettings.color, defaultSettings.eventListener);
             } catch (e) {
-                console.error(e.message);
-                console.error(e);
+                console.warn(e.message);
             }
         },
         attachToSelectors: function attachToSelectors(data) {
@@ -199,8 +198,7 @@ var touchMyRipple = function touchMyRipple() {
 
                 attachRippleToSelectors(data.selectors, rippleColor, eventListener);
             } catch (e) {
-                console.error(e.message);
-                console.error(e);
+                console.warn(e.message);
             }
         },
         setOffsetEl: function setOffsetEl(el) {
