@@ -127,8 +127,7 @@ var touchMyRipple = function touchMyRipple() {
                 // Add some css for prevent errors
                 this.style.overflow = 'hidden';
 
-                if (window.getComputedStyle(this).position !== 'absolute' || window.getComputedStyle(this).position !== 'fixed') {
-
+                if (window.getComputedStyle(this).position !== 'static') {
                     this.style.position = 'relative';
                 }
 
