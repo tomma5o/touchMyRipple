@@ -9,7 +9,7 @@
     "build": "node_modules/.bin/webpack --config webpack/npmTask.js",
     "build_library": "node_modules/.bin/webpack --config webpack/libraryTask.js && npm run copy",
     "build_all": "npm run build && npm run build_library",
-    "copy": "node _buildTask/copy.js",
+    "copy": "node webpack/copy.js",
     "watch": "node_modules/.bin/webpack --watch --config webpack.config.js"
   },
   "repository": {
