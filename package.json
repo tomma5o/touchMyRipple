@@ -3,10 +3,9 @@
   "version": "1.6.1",
   "description": "Lightweight library for add ripple effect where you want",
   "main": "dist/index.js",
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/.bin/webpack --config webpack/npmTask.js",
+    "build": "babel ./index.js -d dist",
     "build_library": "node_modules/.bin/webpack --config webpack/libraryTask.js && npm run copy",
     "build_all": "npm run build && npm run build_library",
     "copy": "node webpack/copy.js",
@@ -30,6 +29,7 @@
   "homepage": "https://github.com/tomma5o/touchMyRipple#readme",
   "dependencies": {},
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.2",
