@@ -1,5 +1,4 @@
 const touchMyRipple = () => {
-
     let mouseMove = false;
     const defaultSettings = {
         area: '',
@@ -32,16 +31,16 @@ const touchMyRipple = () => {
                     PageY = e.y;
                 }
 
-                var el = this.getBoundingClientRect(),
-                    btnWidth = this.clientWidth,
-                    rippleOffset = defaultSettings.offsetEl,
-                    headerHeight = rippleOffset ? rippleOffset.clientHeight : 0,
-                    btnOffsetTop = el.top + headerHeight,
-                    btnOffsetLeft = el.left,
-                    posMouseX = PageX,
-                    posMouseY = PageY + headerHeight,
-                    rippleX = posMouseX - btnOffsetLeft,
-                    rippleY = posMouseY - btnOffsetTop;
+                const el = this.getBoundingClientRect();
+                const btnWidth = this.clientWidth;
+                const rippleOffset = defaultSettings.offsetEl;
+                const headerHeight = rippleOffset ? rippleOffset.clientHeight : 0;
+                const btnOffsetTop = el.top + headerHeight;
+                const btnOffsetLeft = el.left;
+                const posMouseX = PageX;
+                const posMouseY = PageY + headerHeight;
+                const rippleX = posMouseX - btnOffsetLeft;
+                const rippleY = posMouseY - btnOffsetTop;
 
                 const baseCSS = `position: absolute;
                                width: ${btnWidth * 2}px;
@@ -107,21 +106,29 @@ const touchMyRipple = () => {
             throw new Error('You have to enter at least 1 selector');
         }
 
-        if (selectorsEl.length <= 0) {
+        if (selectorsEl.length > 0) {
+            ripple(selectorsEl, rippleColor, eventListener);
+        } else {
             console.warn('No element found with this selector: ', selectors);
         }
-
-        ripple(selectorsEl, rippleColor, eventListener);
     }
 
     const tmripple = {
 
         init(data) {
             try {
-                defaultSettings.area = (data && data.area) ? data.area : defaultSettings.area;
-                defaultSettings.color = (data && data.color) ? data.color : defaultSettings.color;
-                defaultSettings.offsetEl = (data && data.offsetEl) ? this.setOffsetEl(data.offsetEl) : defaultSettings.offsetEl;
-                defaultSettings.eventListener = (data && data.eventListener) ? data.eventListener : defaultSettings.eventListener;
+                defaultSettings.area = (data && data.area)
+                    ? data.area
+                    : defaultSettings.area;
+                defaultSettings.color = (data && data.color)
+                    ? data.color
+                    : defaultSettings.color;
+                defaultSettings.offsetEl = (data && data.offsetEl)
+                    ? this.setOffsetEl(data.offsetEl)
+                    : defaultSettings.offsetEl;
+                defaultSettings.eventListener = (data && data.eventListener)
+                    ? data.eventListener
+                    : defaultSettings.eventListener;
 
                 onDrag(defaultSettings.eventListener);
                 attachRippleToAttribute(defaultSettings.area, defaultSettings.color, defaultSettings.eventListener);

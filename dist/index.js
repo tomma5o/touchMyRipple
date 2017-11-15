@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var touchMyRipple = function touchMyRipple() {
-
     var mouseMove = false;
     var defaultSettings = {
         area: '',
@@ -37,16 +36,16 @@ var touchMyRipple = function touchMyRipple() {
                     PageY = e.y;
                 }
 
-                var el = this.getBoundingClientRect(),
-                    btnWidth = this.clientWidth,
-                    rippleOffset = defaultSettings.offsetEl,
-                    headerHeight = rippleOffset ? rippleOffset.clientHeight : 0,
-                    btnOffsetTop = el.top + headerHeight,
-                    btnOffsetLeft = el.left,
-                    posMouseX = PageX,
-                    posMouseY = PageY + headerHeight,
-                    rippleX = posMouseX - btnOffsetLeft,
-                    rippleY = posMouseY - btnOffsetTop;
+                var el = this.getBoundingClientRect();
+                var btnWidth = this.clientWidth;
+                var rippleOffset = defaultSettings.offsetEl;
+                var headerHeight = rippleOffset ? rippleOffset.clientHeight : 0;
+                var btnOffsetTop = el.top + headerHeight;
+                var btnOffsetLeft = el.left;
+                var posMouseX = PageX;
+                var posMouseY = PageY + headerHeight;
+                var rippleX = posMouseX - btnOffsetLeft;
+                var rippleY = posMouseY - btnOffsetTop;
 
                 var baseCSS = 'position: absolute;\n                               width: ' + btnWidth * 2 + 'px;\n                               height: ' + btnWidth * 2 + 'px;\n                               border-radius: 50%;\n                               transition: transform 700ms, opacity 700ms;\n                               transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);\n                               background: ' + rippleColor + ';\n                               background-position: center;\n                               background-repeat: no-repeat;\n                               background-size: 100%;\n                               top: ' + (rippleY - btnWidth) + 'px;\n                               left: ' + (rippleX - btnWidth) + 'px;\n                               transform: scale(0);\n                               pointer-events: none;';
 
@@ -99,11 +98,11 @@ var touchMyRipple = function touchMyRipple() {
             throw new Error('You have to enter at least 1 selector');
         }
 
-        if (selectorsEl.length <= 0) {
+        if (selectorsEl.length > 0) {
+            ripple(selectorsEl, rippleColor, eventListener);
+        } else {
             console.warn('No element found with this selector: ', selectors);
         }
-
-        ripple(selectorsEl, rippleColor, eventListener);
     }
 
     var tmripple = {
