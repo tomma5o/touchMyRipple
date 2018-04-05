@@ -17,6 +17,24 @@ or
 npm install touchmyripple --save
 ```
 
+## Basic Usage
+
+`index.js`
+```javascript
+import tmripple from 'touchmyripple';
+
+tmripple.init({
+    color: '#bada55', // default is 'rgba(255, 255, 255, 0.4)'
+    eventListener: 'touchstart' // default is 'click'
+});
+
+tmripple.attachToSelectors({
+    selectors: '#foo .bar [type=button]',
+    color: 'rgba(0, 0, 0, 0.4)',
+    eventListener: 'mousedown'
+});
+```
+
 ## Methods
 
 ### **init(settings[Object])**
@@ -62,21 +80,3 @@ This method enables ripple effect to all the elements that match the class passe
         eventListener: 'event'
     }
 ```
-
-
-## Basic Usage
-
-`index.js`
-```javascript
-import tmripple from 'touchmyripple';
-
-tmripple.init({
-    color: '#bada55', // default is 'rgba(255, 255, 255, 0.4)'
-    eventListener: 'touchstart' // default is 'click'
-});
-
-tmripple.attachToSelectors({
-    selectors: '#foo .bar [type=button]',
-    color: 'rgba(0, 0, 0, 0.4)',
-    eventListener: 'mousedown'
-});
