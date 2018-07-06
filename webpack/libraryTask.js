@@ -5,6 +5,7 @@ module.exports = {
     },
     output: {
         filename: './dist/touchMyRipple.js',
+        library: 'tmripple',
         libraryTarget: 'window',
     },
     module: {
