@@ -11,10 +11,10 @@
     <a href="https://github.com/tomma5o/touchmyripple/commits/master">
       <img src="https://img.shields.io/github/last-commit/tomma5o/touchmyripple.svg" />
     </a>
-    <img src="https://img.shields.io/npm/dm/touchmyripple.svg" />
+    <img src="https://img.shields.io/npm/dm/localeval.svg" />
   </p>
   <br>
-  <a href="https://tomma5o.github.io/touchMyRipple/#line3"><b>Demo and Docs<b></a>
+  <a href="https://tomma5o.github.io/touchMyRipple/#line3"><b>Demo and Docs</b></a>
 </div>
 
 ## Installation
