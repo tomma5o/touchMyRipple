@@ -9,6 +9,7 @@
         "SwitchCase": 1,
         "VariableDeclarator": 1,
         "outerIIFEBody": 1,
+        "linebreak-style": false,
         "FunctionDeclaration": {
           "parameters": 1,
           "body": 1

@@ -5,6 +5,7 @@ module.exports = {
     },
     output: {
         filename: './dist/touchMyRipple.js',
+        library: 'tmripple',
         libraryTarget: 'window',
     },
     module: {
@@ -15,10 +16,10 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015'],
+                        presets: ['env'],
                     },
                 },
             },
         ],
-    }
+    },
 };

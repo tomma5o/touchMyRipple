@@ -2,3 +2,5 @@
 node_modules/
 docs/
 .eslintignore
+webpack/
+dist/touchMyRipple.js
