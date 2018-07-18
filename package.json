@@ -27,7 +27,9 @@
     "url": "https://github.com/tomma5o/touchMyRipple/issues"
   },
   "homepage": "https://github.com/tomma5o/touchMyRipple#readme",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.4.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.25.0",
