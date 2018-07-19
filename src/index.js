@@ -9,7 +9,7 @@ const settings = {
 
 /**
  * @description Where the magic happens
- * @param {object} event 
+ * @param {object} e
  * @param {string} rippleColor 
  * @param {string} eventListener 
  */
