@@ -73,23 +73,23 @@ window["tmripple"] =
 
 // Default Settings
 var settings = {
-    area: '',
-    color: 'rgba(255, 255, 255, 0.4)',
+    area: "",
+    color: "rgba(255, 255, 255, 0.4)",
     offsetEl: null,
-    eventListener: 'click',
+    eventListener: "click",
     mouseMove: false
 };
 
 /**
  * @description Where the magic happens
- * @param {object} event 
- * @param {string} rippleColor 
- * @param {string} eventListener 
+ * @param {object} e
+ * @param {string} rippleColor
+ * @param {string} eventListener
  */
 function ripple(e, rippleColor, eventListener) {
-    var clickedEl = e.target;
-    var PageX = eventListener.match(/touch/) ? e.changedTouches[0].pageX : e.x;
-    var PageY = eventListener.match(/touch/) ? e.changedTouches[0].pageY : e.y;
+    var clickedEl = e.currentTarget;
+    var PageX = eventListener.match(/touch/) ? e.changedTouches[0].pageX : e.clientX;
+    var PageY = eventListener.match(/touch/) ? e.changedTouches[0].pageY : e.clientY;
     var btnWidth = clickedEl.clientWidth;
     var el = clickedEl.getBoundingClientRect();
     var rippleOffset = settings.offsetEl ? settings.offsetEl.clientHeight : 0;
@@ -100,18 +100,18 @@ function ripple(e, rippleColor, eventListener) {
     var rippleX = posMouseX - btnOffsetLeft;
     var rippleY = posMouseY - btnOffsetTop;
 
-    var baseCSS = '\n        position: absolute;\n        width: ' + btnWidth * 2 + 'px;\n        height: ' + btnWidth * 2 + 'px;\n        border-radius: 50%;\n        transition: transform 700ms, opacity 700ms;\n        transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);\n        background: ' + rippleColor + ';\n        background-position: center;\n        background-repeat: no-repeat;\n        background-size: 100%;\n        top: ' + (rippleY - btnWidth) + 'px;\n        left: ' + (rippleX - btnWidth) + 'px;\n        transform: scale(0);\n        pointer-events: none;\n    ';
+    var baseCSS = "\n          position: absolute;\n          width: " + btnWidth * 2 + "px;\n          height: " + btnWidth * 2 + "px;\n          border-radius: 50%;\n          transition: transform 700ms, opacity 700ms;\n          transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);\n          background: " + rippleColor + ";\n          background-position: center;\n          background-repeat: no-repeat;\n          background-size: 100%;\n          left: " + (rippleX - btnWidth) + "px;\n          top: " + (rippleY - btnWidth) + "px;\n          transform: scale(0);\n          pointer-events: none;\n      ";
 
     // Prepare the dom
-    var rippleEffect = document.createElement('span');
+    var rippleEffect = document.createElement("span");
     rippleEffect.style.cssText = baseCSS;
 
     // Add some css for prevent overflow errors
-    clickedEl.style.overflow = 'hidden';
+    clickedEl.style.overflow = "hidden";
 
     // Check if the element is not static because the ripple is in absolute
-    if (window.getComputedStyle(clickedEl).position === 'static') {
-        clickedEl.style.position = 'relative';
+    if (window.getComputedStyle(clickedEl).position === "static") {
+        clickedEl.style.position = "relative";
     }
 
     // Check for the mousemove event
@@ -124,7 +124,7 @@ function ripple(e, rippleColor, eventListener) {
 
     // start animation
     requestAnimationFrame(function () {
-        rippleEffect.style.cssText = baseCSS + ' transform: scale(1); opacity: 0;';
+        rippleEffect.style.cssText = baseCSS + " transform: scale(1); opacity: 0;";
     });
 
     setTimeout(function () {
@@ -134,11 +134,11 @@ function ripple(e, rippleColor, eventListener) {
 
 /**
  * @description Prevent ripple when scrolling (Mobile Only)
- * @param {string} eventListener 
+ * @param {string} eventListener
  */
 function onDrag(eventListener) {
-    if (eventListener === 'touchend') {
-        document.getElementsByTagName('body')[0].addEventListener('touchmove', function () {
+    if (eventListener === "touchend") {
+        document.getElementsByTagName("body")[0].addEventListener("touchmove", function () {
             settings.mouseMove = true;
         });
     }
@@ -154,7 +154,7 @@ function attachRipple(els, rippleColor, eventListener) {
 }
 
 function attachRippleToAttribute(area, rippleColor, eventListener) {
-    var attributeEl = document.querySelectorAll(area + ' [data-animation=\'ripple\']');
+    var attributeEl = document.querySelectorAll(area + " [data-animation='ripple']");
 
     if (attributeEl.length > 0) {
         attachRipple(attributeEl, rippleColor, eventListener);
@@ -167,13 +167,13 @@ function attachRippleToSelectors(selectors, rippleColor, eventListener) {
     if (selectors) {
         var selectorsEl = document.querySelectorAll(selectors);
     } else {
-        throw new Error('You have to enter at least 1 selector');
+        throw new Error("You have to enter at least 1 selector");
     }
 
     if (selectorsEl.length > 0) {
         attachRipple(selectorsEl, rippleColor, eventListener);
     } else {
-        console.warn('No element found with this selector: ', selectors);
+        console.warn("No element found with this selector: ", selectors);
     }
 }
 
@@ -218,7 +218,9 @@ module.exports = {
     },
     setOffsetEl: function setOffsetEl(el) {
         settings.offsetEl = document.querySelector(el);
-    }
+    },
+
+    ripple: ripple
 };
 
 /***/ })
