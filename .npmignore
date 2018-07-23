@@ -4,3 +4,4 @@ docs/
 .eslintignore
 webpack/
 dist/touchMyRipple.js
+dist/touchMyRipple.js.gz
