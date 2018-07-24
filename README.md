@@ -96,7 +96,7 @@ This method enables ripple effect to all the elements that match the class passe
 
 `button.jsx`
 ```jsx
-import tmripple from 'touchmyripple/react';
+import withRipple from 'touchmyripple/react';
 
 class Button extends Component {
   render() {
