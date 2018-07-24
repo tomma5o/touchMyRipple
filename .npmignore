@@ -1,7 +1,9 @@
 .vscode/
+.vs/
 node_modules/
 docs/
 .eslintignore
 webpack/
 dist/touchMyRipple.js
 dist/touchMyRipple.js.gz
+

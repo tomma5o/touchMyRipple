@@ -1,3 +1,5 @@
 node_modules/
 .vscode/
 .vs/
+dist/react
+dist/index.js
