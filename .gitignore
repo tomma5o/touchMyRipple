@@ -1,5 +1,5 @@
 node_modules/
 .vscode/
 .vs/
-/index.js
 /react/index.js
+/index.js
