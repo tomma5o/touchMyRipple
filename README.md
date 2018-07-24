@@ -121,6 +121,8 @@ class App extends React.Component {
     }
 
     return  <Button tmripple={settingObj} />
+    // or
+    // return  <Button tmripple />
   }
 }
 ```
@@ -128,7 +130,11 @@ class App extends React.Component {
 `settings[Object]`
 ```javascript
     {
+        // default is "rgba(255,255,255,0.5)"
         color: 'rgba, hex, hsla',
-        eventListener: 'event' // this option accept an event listener 
+        // this option accept an event listener for
+        // differentiate smartphone event form desktop events
+        // default is "click"
+        eventListener: 'event'  
     }
 ```

@@ -2,7 +2,7 @@ import { ripple } from "../index";
 import React from "react";
 
 const withRipple = Wcomp => props => {
-  const { color, eventName } = props.tmripple;
+  const { color = "rgba(255,255,255, 0.5)", eventName = "click" } = props.tmripple;
   return (
     <Wcomp
       onClick={e => {
