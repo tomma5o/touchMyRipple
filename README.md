@@ -92,3 +92,43 @@ This method enables ripple effect to all the elements that match the class passe
         eventListener: 'event'
     }
 ```
+## React Usage
+
+`button.jsx`
+```jsx
+import tmripple from 'touchmyripple/react';
+
+class Button extends Component {
+  render() {
+    return (
+      <button {...this.props}>
+        Hello <span>World</span>
+      </button>
+    );
+  }
+}
+
+export default withRipple(Button);
+```
+
+`app.js`
+```jsx
+class App extends React.Component {
+  render() {
+    const settingObj = {
+      eventName: "click", 
+      color: "red"
+    }
+
+    return  <Button tmripple={settingObj} />
+  }
+}
+```
+
+`settings[Object]`
+```javascript
+    {
+        color: 'rgba, hex, hsla',
+        eventListener: 'event' // this option accept an event listener 
+    }
+```
