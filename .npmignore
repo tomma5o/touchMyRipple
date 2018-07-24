@@ -1,9 +1,9 @@
 .vscode/
 .vs/
+.eslintignore
+.eslintrc
 node_modules/
 docs/
-.eslintignore
 webpack/
-dist/touchMyRipple.js
-dist/touchMyRipple.js.gz
-
+lib/
+src/

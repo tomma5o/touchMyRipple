@@ -1,14 +1,12 @@
 {
   "name": "touchmyripple",
-  "version": "2.5.0",
+  "version": "2.5.13",
   "description": "Lightweight library for add ripple effect where you want",
-  "main": "dist/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "_build_module": "babel ./index.js -d dist",
-    "_build_react": "babel ./react/index.js -d dist",
+    "_build_module": "babel src/index.js -o index.js",
+    "_build_react": "babel src/react/index.js -o react/index.js",
     "_build_library": "node_modules/.bin/webpack --config webpack/libraryTask.js && npm run copy",
-    "postinstall": "npm run _build_module && npm run _build_react",
     "build": "npm run _build_module && npm run _build_react && npm run _build_library",
     "copy": "node webpack/copy.js",
     "watch": "node_modules/.bin/webpack --watch --config webpack/libraryTask.js"
@@ -18,6 +16,7 @@
     "url": "git+https://github.com/tomma5o/touchMyRipple.git"
   },
   "keywords": [
+
     "ripple",
     "vanillajs",
     "light",

@@ -1,7 +1,5 @@
-"use strict";
-
 // Default Settings
-var settings = {
+const settings = {
     area: "",
     color: "rgba(255, 255, 255, 0.4)",
     offsetEl: null,
@@ -16,23 +14,42 @@ var settings = {
  * @param {string} eventListener
  */
 function ripple(e, rippleColor, eventListener) {
-    var clickedEl = e.currentTarget;
-    var PageX = eventListener.match(/touch/) ? e.changedTouches[0].pageX : e.clientX;
-    var PageY = eventListener.match(/touch/) ? e.changedTouches[0].pageY : e.clientY;
-    var btnWidth = clickedEl.clientWidth;
-    var el = clickedEl.getBoundingClientRect();
-    var rippleOffset = settings.offsetEl ? settings.offsetEl.clientHeight : 0;
-    var btnOffsetTop = el.top + rippleOffset;
-    var btnOffsetLeft = el.left;
-    var posMouseX = PageX;
-    var posMouseY = PageY + rippleOffset;
-    var rippleX = posMouseX - btnOffsetLeft;
-    var rippleY = posMouseY - btnOffsetTop;
+    const clickedEl = e.currentTarget;
+    const PageX = eventListener.match(/touch/)
+        ? e.changedTouches[0].pageX
+        : e.clientX;
+    const PageY = eventListener.match(/touch/)
+        ? e.changedTouches[0].pageY
+        : e.clientY;
+    const btnWidth = clickedEl.clientWidth;
+    const el = clickedEl.getBoundingClientRect();
+    const rippleOffset = settings.offsetEl ? settings.offsetEl.clientHeight : 0;
+    const btnOffsetTop = el.top + rippleOffset;
+    const btnOffsetLeft = el.left;
+    const posMouseX = PageX;
+    const posMouseY = PageY + rippleOffset;
+    const rippleX = posMouseX - btnOffsetLeft;
+    const rippleY = posMouseY - btnOffsetTop;
 
-    var baseCSS = "\n          position: absolute;\n          width: " + btnWidth * 2 + "px;\n          height: " + btnWidth * 2 + "px;\n          border-radius: 50%;\n          transition: transform 700ms, opacity 700ms;\n          transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);\n          background: " + rippleColor + ";\n          background-position: center;\n          background-repeat: no-repeat;\n          background-size: 100%;\n          left: " + (rippleX - btnWidth) + "px;\n          top: " + (rippleY - btnWidth) + "px;\n          transform: scale(0);\n          pointer-events: none;\n      ";
+    const baseCSS = `
+          position: absolute;
+          width: ${btnWidth * 2}px;
+          height: ${btnWidth * 2}px;
+          border-radius: 50%;
+          transition: transform 700ms, opacity 700ms;
+          transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+          background: ${rippleColor};
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100%;
+          left: ${rippleX - btnWidth}px;
+          top: ${rippleY - btnWidth}px;
+          transform: scale(0);
+          pointer-events: none;
+      `;
 
     // Prepare the dom
-    var rippleEffect = document.createElement("span");
+    const rippleEffect = document.createElement("span");
     rippleEffect.style.cssText = baseCSS;
 
     // Add some css for prevent overflow errors
@@ -52,11 +69,11 @@ function ripple(e, rippleColor, eventListener) {
     clickedEl.appendChild(rippleEffect);
 
     // start animation
-    requestAnimationFrame(function () {
-        rippleEffect.style.cssText = baseCSS + " transform: scale(1); opacity: 0;";
+    requestAnimationFrame(() => {
+        rippleEffect.style.cssText = `${baseCSS} transform: scale(1); opacity: 0;`;
     });
 
-    setTimeout(function () {
+    setTimeout(() => {
         rippleEffect.remove();
     }, 700);
 }
@@ -67,23 +84,27 @@ function ripple(e, rippleColor, eventListener) {
  */
 function onDrag(eventListener) {
     if (eventListener === "touchend") {
-        document.getElementsByTagName("body")[0].addEventListener("touchmove", function () {
-            settings.mouseMove = true;
-        });
+        document
+            .getElementsByTagName("body")[0]
+            .addEventListener("touchmove", () => {
+                settings.mouseMove = true;
+            });
     }
 }
 
 function attachRipple(els, rippleColor, eventListener) {
-    for (var i = 0; i < els.length; i += 1) {
-        var currentBtn = els[i];
-        currentBtn.addEventListener(eventListener, function (e) {
-            return ripple(e, rippleColor, eventListener);
-        });
+    for (let i = 0; i < els.length; i += 1) {
+        const currentBtn = els[i];
+        currentBtn.addEventListener(eventListener, e =>
+            ripple(e, rippleColor, eventListener)
+        );
     }
 }
 
 function attachRippleToAttribute(area, rippleColor, eventListener) {
-    var attributeEl = document.querySelectorAll(area + " [data-animation='ripple']");
+    const attributeEl = document.querySelectorAll(
+        `${area} [data-animation='ripple']`
+    );
 
     if (attributeEl.length > 0) {
         attachRipple(attributeEl, rippleColor, eventListener);
@@ -107,15 +128,9 @@ function attachRippleToSelectors(selectors, rippleColor, eventListener) {
 }
 
 module.exports = {
-    init: function init() {
-        var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
+    init(data = {}) {
         try {
-            var area = settings.area,
-                color = settings.color,
-                offsetEl = settings.offsetEl,
-                eventListener = settings.eventListener;
-
+            let { area, color, offsetEl, eventListener } = settings;
 
             area = data.area || area;
             color = data.color || color;
@@ -128,26 +143,23 @@ module.exports = {
             console.warn(e.message);
         }
     },
-    attachToSelectors: function attachToSelectors() {
-        var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+    attachToSelectors(data = {}) {
         try {
-            var elSetting = {
+            const elSetting = {
                 color: data.color || settings.color,
                 eventListener: data.eventListener || settings.eventListener
             };
-            var color = elSetting.color,
-                eventListener = elSetting.eventListener;
-
+            const { color, eventListener } = elSetting;
 
             attachRippleToSelectors(data.selectors, color, eventListener);
         } catch (e) {
             console.warn(e.message);
         }
     },
-    setOffsetEl: function setOffsetEl(el) {
+
+    setOffsetEl(el) {
         settings.offsetEl = document.querySelector(el);
     },
-
-    ripple: ripple
+    ripple
 };

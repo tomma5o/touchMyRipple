@@ -1,6 +1,6 @@
 var fs = require('fs-extra');
 
-var source = './dist/touchMyRipple.js';
+var source = './lib/touchMyRipple.js';
 var dest = './docs/js/touchMyRipple.js';
 
 fs.copy(source, dest, function (err) {
