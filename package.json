@@ -4,8 +4,9 @@
   "description": "Lightweight library for add ripple effect where you want",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "_check_folder_exist": "node webpack/createDir.js",
     "_build_module": "babel src/index.js -o index.js",
-    "_build_react": "babel src/react/index.js -o react/index.js",
+    "_build_react": "npm run _check_folder_exist && babel src/react/index.js -o react/index.js",
     "_build_library": "node_modules/.bin/webpack --config webpack/libraryTask.js && npm run copy",
     "build": "npm run _build_module && npm run _build_react && npm run _build_library",
     "copy": "node webpack/copy.js",
