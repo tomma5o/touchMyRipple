@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [2.6.0] - 2018-07-24
+## [2.6.01] - 2018-07-25
 ### Added
 - React HOC for add ripple in every element you want
 - Helper function for creating a react folder when you run ```npm run build``` in local
