@@ -1,3 +1,5 @@
+const CompressionPlugin = require("compression-webpack-plugin");
+
 module.exports = {
 
     entry: {
@@ -6,7 +8,7 @@ module.exports = {
     output: {
         filename: './dist/touchMyRipple.js',
         library: 'tmripple',
-        libraryTarget: 'umd',
+        libraryTarget: 'window',
     },
     module: {
         rules: [
@@ -22,4 +24,7 @@ module.exports = {
             },
         ],
     },
+    plugins: [
+        new CompressionPlugin()
+    ]
 };
