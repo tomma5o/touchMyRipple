@@ -1,5 +1,5 @@
 node_modules/
 .vscode/
 .vs/
-dist/
-!dist/touchMyRipple*
+dist/react
+dist/index.js
