@@ -69,9 +69,9 @@ function ripple(e, rippleColor, eventListener) {
     clickedEl.appendChild(rippleEffect);
 
     // start animation
-    requestAnimationFrame(() => {
+    setTimeout(() => {
         rippleEffect.style.cssText = `${baseCSS} transform: scale(1); opacity: 0;`;
-    });
+    }, 50);
 
     setTimeout(() => {
         rippleEffect.remove();

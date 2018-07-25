@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.6.11] - 2018-07-25
+### Fixed
+- Changed requestAnimation frame to a normal setTimeOut with delay of 50ms, for timing problems
+
 ## [2.6.01] - 2018-07-25
 ### Added
 - React HOC for add ripple in every element you want
