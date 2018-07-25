@@ -19,7 +19,7 @@
 
 ## Installation
  
-[**Download Build**](https://raw.githubusercontent.com/tomma5o/touchMyRipple/master/dist/touchMyRipple.js)
+[**Download Build**](https://raw.githubusercontent.com/tomma5o/touchMyRipple/master/lib/touchMyRipple.js)
 
 ```html
 <script src="myDirectory/touchMyRipple.js"></script>
