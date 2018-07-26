@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.6.2] - 2018-07-25
+### Fixed
+- Props propagation inside a component
+
 ## [2.6.11] - 2018-07-25
 ### Fixed
 - Changed requestAnimation frame to a normal setTimeOut with delay of 50ms, for timing problems

@@ -2,11 +2,15 @@ import { ripple } from "../index";
 import React from "react";
 
 const withRipple = Wcomp => props => {
-  const { color = "rgba(255,255,255, 0.5)", eventName = "click" } = props.tmripple;
+  const settings = {
+    color: (props.tmripple && props.tmripple.color) || "rgba(255,255,255, 0.5)",
+    eventName: (props.tmripple && props.tmripple.eventName) || "click"
+  };
   return (
     <Wcomp
+      {...props}
       onClick={e => {
-        ripple.call(this, e, color, eventName);
+        ripple.call(this, e, settings.color, settings.eventName);
         props.onClick && props.onClick.call(this, e);
       }}
     />

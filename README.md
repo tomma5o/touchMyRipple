@@ -121,8 +121,7 @@ class App extends React.Component {
     }
 
     return  <Button tmripple={settingObj} />
-    // or
-    // return  <Button tmripple />
+    // or use it with default settings: <Button  />
   }
 }
 ```
