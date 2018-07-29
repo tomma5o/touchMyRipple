@@ -144,7 +144,7 @@ class App extends React.Component {
         disabled: true
 
         // 🔺 this setting can be setted ONLY in the decorator function
-        // you can create an obgjec of key/value attributes to ignore
+        // you can create an object of key/value attributes to ignore
         ignoreEls: {class: "CTA_Button"}
     }
 ```
