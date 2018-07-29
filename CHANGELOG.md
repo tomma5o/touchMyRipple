@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.7.0] - 2018-07-29
+### Added
+- Global setting as a second parameter of the decorator function
+- `disabled` option in the setting
+- `ignoreEls` option in the setting
+
 ## [2.6.2] - 2018-07-25
 ### Fixed
 - Props propagation inside a component

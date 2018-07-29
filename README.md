@@ -108,7 +108,10 @@ class Button extends Component {
   }
 }
 
-export default withRipple(Button);
+export default withRipple(Button, {
+  color: "red",
+  ignoreEls: { type: "secondary" }
+});
 ```
 
 `app.js`
@@ -117,7 +120,7 @@ class App extends React.Component {
   render() {
     const settingObj = {
       eventName: "click", 
-      color: "red"
+      color: "blue"
     }
 
     return  <Button tmripple={settingObj} />
@@ -131,9 +134,17 @@ class App extends React.Component {
     {
         // default is "rgba(255,255,255,0.5)"
         color: 'rgba, hex, hsla',
+
         // this option accept an event listener for
-        // differentiate smartphone event form desktop events
+        // differentiate smartphone event from desktop events
         // default is "click"
-        eventListener: 'event'  
+        eventListener: 'event',
+
+        // ignore a specific element
+        disabled: true
+
+        // 🔺 this setting can be setted ONLY in the decorator function
+        // you can create an obgjec of key/value attributes to ignore
+        ignoreEls: {class: "CTA_Button"}
     }
 ```

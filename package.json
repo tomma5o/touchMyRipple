@@ -1,6 +1,6 @@
 {
   "name": "touchmyripple",
-  "version": "2.6.2",
+  "version": "2.7.0",
   "description": "Lightweight library for add ripple effect where you want",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,8 @@
     "_build_library": "node_modules/.bin/webpack --config webpack/libraryTask.js && npm run copy",
     "build": "npm run _build_module && npm run _build_react && npm run _build_library",
     "copy": "node webpack/copy.js",
-    "watch": "node_modules/.bin/webpack --watch --config webpack/libraryTask.js"
+    "watch": "node_modules/.bin/webpack --watch --config webpack/libraryTask.js",
+    "prepublish": "npm run _build_react && npm run _build_module"
   },
   "repository": {
     "type": "git",
