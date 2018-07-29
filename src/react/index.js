@@ -1,6 +1,5 @@
-import { ripple } from "./library.js";
+import { ripple } from "../index";
 import React from "react";
-
 
 const _isIgnoredAttrPresent = (e, settings) => {
   var element = e.currentTarget;

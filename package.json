@@ -1,6 +1,6 @@
 {
   "name": "touchmyripple",
-  "version": "2.7.0",
+  "version": "2.7.2",
   "description": "Lightweight library for add ripple effect where you want",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
